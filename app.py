@@ -11,8 +11,7 @@ app = Flask(__name__)
 #     verbose=False)
 
 @app.route('/')
-def main():
-    return "Hello World"
+def index():
+    return 'Web App with Python Flask!'
 
-if __name__== '__main__':
-    app.run(host='0.0.0.0:5002')
+app.run(host='0.0.0.0', port=5000)
