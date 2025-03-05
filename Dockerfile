@@ -6,9 +6,10 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 WORKDIR /usr/src/app
-COPY . .
-# COPY ./exclude_files/all-MiniLM-L6-v2.F16.gguf /app/llama_cpp
-# COPY ./exclude_files/mixtral-8x7b-instruct-v0.1.Q2_K.gguf /app/llama_cpp
+COPY app.py .
+
+# QA model is too large to copy, need to mount it as external storage
+# COPY ./exclude_files/mixtral-8x7b-instruct-v0.1.Q2_K.gguf .
 
 # do NOT use 5000
 EXPOSE 4996

@@ -1,5 +1,4 @@
-# flask app
-# from llama_cpp import Llama
+from llama_cpp import Llama
 from flask import Flask
 
 app = Flask(__name__)
