@@ -1,4 +1,4 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
+# This is excellent guidance on using Docker for HuggingFace: https://www.docker.com/blog/llm-docker-for-local-and-hugging-face-hosting/
 FROM python:3.13
 
 # Install pip requirements
@@ -7,6 +7,8 @@ RUN pip install -r requirements.txt
 
 WORKDIR /usr/src/app
 COPY app.py .
+
+# MOUNT
 
 # QA model is too large to copy, need to mount it as external storage
 # COPY ./exclude_files/mixtral-8x7b-instruct-v0.1.Q2_K.gguf .

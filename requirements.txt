@@ -2,3 +2,4 @@
 flask==3.1.0
 llama-cpp-python==0.2.85
 lancedb==0.20.0
+huggingface-hub
