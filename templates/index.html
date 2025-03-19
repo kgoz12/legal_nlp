@@ -1,7 +1,22 @@
-<h1>Here is a form</h1>
-
-<form method="post">
-    Enter your question: <input name="question"> <br><br>
-
-    <button type="submit">submit</button>
-</form>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Welcome to the Chat!</title>
+</head>
+<body>
+    <p>PLACEHOLDER: Describe the functionality of this application</p>
+    <p>Enter a question regarding EO #xxxx and get a response based on the contents of: Federalist Papers # and EO # yyyy.</pp>
+    <form method="post">
+        Enter your question: <input type="text" name="question" id="question"> <br><br>
+    
+        <button type="submit">submit</button>
+    </form>
+    {% if output %}
+        <h2>Model output: </h2>
+        <p id= "model_output">{{ output }} </p>
+        <h2>User Input:</h2>
+        <p id = "user_input_text">{{ input_text }}</p>
+    {% endif %}
+</body>
+</html>
