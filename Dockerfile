@@ -5,15 +5,17 @@ FROM python:3.13
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY app.py .
+COPY templates/ ./templates/ 
 
-# MOUNT
-
-# QA model is too large to copy, need to mount it as external storage
-# COPY ./exclude_files/mixtral-8x7b-instruct-v0.1.Q2_K.gguf .
+ENV DATA_DIR=/data
 
 # do NOT use 5000
 EXPOSE 4996
 
 CMD ["python", "app.py"]
+
+# cd ./Desktop/legal_nlp
+# docker build -t katiegoz312/my_flask_app .
+# docker run -p 4996:4996 -v /Users/katherineGoznikar/Desktop/legal_nlp/exclude_files/models:/data --name=my_container katiegoz312/my_flask_app
