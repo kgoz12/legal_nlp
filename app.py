@@ -32,11 +32,14 @@ def predict(text_input):
         text_ouput = "something went wrong!"
     return text_output
 
+# GET loads the page
+# POST sends user requests in via the submit button
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method =='POST':
+    # should I put something here that clears output?
+    if request.method=='POST':
         user_input=request.form['question']
-        model_output = predict(user_input)
+        model_output=predict(user_input)
         return render_template('index.html', output=model_output, input_text=user_input)
     return render_template('index.html')
 

@@ -8,6 +8,7 @@ RUN pip install -r requirements.txt
 WORKDIR /app
 COPY app.py .
 COPY templates/ ./templates/ 
+COPY static/ ./static/ 
 
 ENV DATA_DIR=/data
 
