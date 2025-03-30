@@ -1,2 +1,3 @@
 # legal_nlp
-repo for exploratory nlp for legal documents
+
+This project examines whether an LLM solution could be used to 
