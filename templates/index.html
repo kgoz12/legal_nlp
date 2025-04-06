@@ -9,14 +9,13 @@
     <h1>Generative Q&A Application Demo</h1>
     <p><b>Instructions: ask a question regarding unitary executive theory. Suggested questions include: <br>
         <ul>
-            <li>Does the constitution support unitary executive power?</li>
-            <li>Does the system of checks and balances support unitary executive theory?</li>
+            <li>Does the President provide authoritative interpretations of law for the executive branch?</li>
             <li>What is unitary executive theory?</li>
         </ul>
     </b></p>
     <p>Your question will be answered by a RAG application that combines a lancedb data store with a llama.cpp implementation of 
         the mixtral-8x7b-instruct model. The your question will be answered using the following authoritative sources as 
-        reference: Federalist Paper # 47; Federalist Paper #70; Executive Order #12866; Article 3, Section 2 of the Constitution. </p>
+        reference: Federalist Paper # 47; Federalist Paper #70; and Executive Order #12866. </p>
     <form method="post">
         Enter your question: <input type="text" name="question" id="question" style="width:300px;"> <br><br>
         <div class="btn-container">
@@ -27,8 +26,16 @@
     {% if output %}
         <h2>User input:</h2>
         <p id = "user_input_text">{{ input_text }}</p>
-        <h2>Model output: </h2>
-        <p id= "model_output_text">{{ output }} </p>
+        <table border="1">
+            <thead><tr><th>Reference Source</th><th>Response</th></tr></thead>
+                {% for item in output["items"] %}
+                <tbody>
+                <tr><td>{{ item['reference'] }}</td><td>{{ item['response'] }}</td></tr>
+                </tbody>
+                {% endfor %}
+        </table>
+    <!-- <h2>Model output: </h2>
+    <p id= "model_output_text">{{ output }} </p> -->
     {% endif %}
 </body>
 </html>

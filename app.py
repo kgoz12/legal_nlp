@@ -31,13 +31,14 @@ app = Flask(__name__)
 def predict(text_input):
     try:
         question_vector = sentence_embeddings.embed([text_input])
-        K = 1
+        K = 3
         response_data_frame = ds.to_table(
             nearest={"column": "vector",
                      "q": question_vector[0],
                      "metric": "dot",
                      "k": K}).to_pandas()
-        for row in response_data_frame["text"]:
+        result_dict={'items' : []}
+        for row, ref in zip(response_data_frame["text"], response_data_frame["authoritative_resource"]):
             response = llm_q_and_a.create_chat_completion(
                 seed=123,
                 top_k = 0,
@@ -50,7 +51,8 @@ def predict(text_input):
                     "content": text_input}
                 ]
             )
-        text_output = response['choices'][0]['message']['content']
+            result_dict['items'].append({'reference': ref, 'response': response['choices'][0]['message']['content']})
+        text_output=result_dict
     except:
         text_ouput = "something went wrong!"
     return text_output
@@ -68,24 +70,3 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0', port=4996) # do NOT use 5000
-
-
-response_data_frame = ds.to_table(
-    nearest={"column": "vector",
-     "q": question_vector[0],
-     "metric": "dot",
-     "k": K}).to_pandas()
-# text_output = response_data_frame["text"][0]
-# response = llm_q_and_a.create_chat_completion(
-#     seed=123,
-#     top_k = 0,
-#     temperature=0.05,
-#     max_tokens=1024,
-#     messages = [
-#         {"role" : "user",
-#         "content": response_data_frame["text"][0]},
-#         {"role": "assistant", 
-#         "content": text_input}
-#     ]
-# )
-# text_output = response['choices'][0]['message']['content']
