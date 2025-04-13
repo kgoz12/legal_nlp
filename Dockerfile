@@ -16,7 +16,3 @@ ENV DATA_DIR=/data
 EXPOSE 4996
 
 CMD ["python", "app.py"]
-
-# cd ./Desktop/legal_nlp
-# docker build -t katiegoz312/my_flask_app .
-# docker run --shm-size=8g -p 4996:4996 -v /Users/katherineGoznikar/Desktop/legal_nlp/data:/data --name=my_container katiegoz312/my_flask_app
