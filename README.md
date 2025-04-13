@@ -22,12 +22,13 @@ This model was used to generate the sentence embeddings. We use these vectors fo
 
 This model was used to generate the answers to the user's question: 
 
-* TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF
+* https://huggingface.co/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF
 
-Pylance was used to store the reference text and vectors. Dot product was used to measure the distance between vectors.
+Pylance was used to store the reference text and vectors. Used dot used to measure the distance between question vector and candidate context vectors.
 
-# TODO
+# TODO 
 
 * Fine-tune the sentence embedding & question answering models to be better suited to this problem domain
 * Gather additional reference sources
-* Make improvements to the text splitting on the reference sources (split by topic)
+* Make improvements to the text splitting on the reference sources
+* Make impovements to the UI
