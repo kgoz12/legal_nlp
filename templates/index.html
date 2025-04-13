@@ -19,9 +19,12 @@
     <form method="post">
         Enter your question: <input type="text" name="question" id="question" style="width:300px;"> <br><br>
         <div class="btn-container">
-            <button id="submit" class="btn" onclick="loading();">Submit</button>
+            <button id="submit" class="btn" onclick="spinner();">Submit</button>
         </div>
-        <!-- <div class="loader"></div> -->
+        <div class="loader">
+            <div class="loading">
+            </div>
+          </div>
     </form>
     {% if output %}
         <h2>User input:</h2>
@@ -34,8 +37,11 @@
                 </tbody>
                 {% endfor %}
         </table>
-    <!-- <h2>Model output: </h2>
-    <p id= "model_output_text">{{ output }} </p> -->
     {% endif %}
 </body>
+<script type="text/javascript">
+    function spinner() {
+        document.getElementsByClassName("loader")[0].style.display = "block";
+    }
+</script> 
 </html>
